@@ -1,0 +1,17 @@
+[cisco_vts260_in]
+name=Cisco VTS 260 Yum
+repo_gpgcheck=0
+baseurl=http://engci-maven-master.cisco.com/artifactory/simple/vts-yum/2.6.0-os-newton/
+enabled=0
+failovermethod=priority
+gpgcheck=0
+
+[cisco_vts260_ext]
+name=Cisco VTS 260 Yum
+repo_gpgcheck=0
+baseurl=https://devhub.cisco.com/artifactory/vts-yum/2.6.0-os-newton/
+enabled=1
+failovermethod=priority
+gpgcheck=0
+username=user
+password=pass

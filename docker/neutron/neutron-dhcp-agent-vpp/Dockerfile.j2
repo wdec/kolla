@@ -1,0 +1,26 @@
+FROM {{ namespace }}/{{ image_prefix }}neutron-dhcp-agent:{{ tag }}
+LABEL maintainer="{{ maintainer }}" name="{{ image_name }}" build-date="{{ build_date }}"
+
+USER root
+{% block neutron_dhcp_agent_vpp_header %}{% endblock %}
+
+{% import "macros.j2" as macros with context %}
+
+
+{% if install_type == 'binary' %}
+
+        {% set neutron_dhcp_agent_vpp_packages = [
+            'python-cisco-controller-agent-device-drivers'
+        ] %}
+
+COPY repofiles/cisco-vts.repo /etc/yum.repos.d/cisco-vts.repo
+
+{{ macros.install_packages(neutron_dhcp_agent_vpp_packages | customizable("packages")) }}
+
+{% endif %}
+
+
+{% block neutron_dhcp_agent_vpp_footer %}{% endblock %}
+{% block footer %}{% endblock %}
+
+USER neutron
